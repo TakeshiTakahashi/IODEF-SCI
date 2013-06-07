@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cvss:base_metrics 
+	xmlns:cvss="http://scap.nist.gov/schema/cvss-v2/0.2" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://scap.nist.gov/schema/cvss-v2/0.2 schema/cvss-v2.xsd">
+  <XXX>xxxxxxxx</XXX>
+  <cvss:score>7.8</cvss:score>
+  <cvss:access-vector>NETWORK</cvss:access-vector>
+</cvss:base_metrics>

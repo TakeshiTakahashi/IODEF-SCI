@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+<cce_list xmlns='http://cce.mitre.org' modified='2011-11-30'>
+  <cces modified='2011-11-30'>    
+-->
+    <cce cce_id='CCE-13-3' platform='office2k7' modified='2010-04-28'>
+      <description>The "Minimum encryption settings" setting should be configured correctly.</description>
+      <parameters>
+        <parameter>(1) enabled/disabled</parameter>
+      </parameters>
+      <technical_mechanisms>
+        <technical_mechanism>(1) GPO Settings:User Configuration / Administrative Templates / Classic Administrative Templates / Microsoft Office Outlook 2007 / Security / Cryptography </technical_mechanism>
+        <technical_mechanism>(2) Registry keys: HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\12.0\Outlook\Security\MinEncKey</technical_mechanism>
+      </technical_mechanisms>
+      <references>
+        <reference resource_id='Old v4 CCE ID'>CCE-13</reference>
+        <reference resource_id='Microsoft Office 2007 Threats and Countermeasures guide Beta release'>Table 1.173. Minimum encryption settings</reference>
+        <reference resource_id='Microsoft Office 2007 Recommendations (Security Settings for Office 2007 Applications.xlsx)'>User Configuration\Administrative Templates\Microsoft Office Outlook 2007\Security\Cryptography\Minimum encryption settings</reference>
+        <reference resource_id='NIST SCAP Microsoft Office 2007 OVAL (SCAP-Office2007-OVAL-Beta-v1.xml)'>oval:org.mitre.oval:def:661</reference>
+        <reference resource_id='NIST SCAP Microsoft Office 2007 XCCDF (SCAP-Office2007-XCCDF-Beta-v1.xml )'>MinimumEncryptionSettings</reference>
+      </references>
+    </cce>
+<!--
+</cces>
+</cce_list>
+-->

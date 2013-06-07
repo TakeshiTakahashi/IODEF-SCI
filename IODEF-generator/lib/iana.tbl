@@ -1,0 +1,108 @@
+Namespace: http://xml/metadataSharing.xsd
+Specification Name: Malware Metadata Exchange Format
+Version: 1.2
+Reference URI: http://standards.ieee.org/develop/indconn/icsg/mmdef.html
+Applicable Classes: AttackPattern
+
+Namespace: http://capec.mitre.org/observables
+Specification Name: Common Attack Pattern Enumeration and Classification
+Version: 1.6
+Reference URI: http://capec.mitre.org/
+Applicable Classes: AttackPattern
+
+Namespace: http://cce.mitre.org
+Specification Name: Common Configuration Enumeration
+Version: 5.0
+Reference URI: http://cce.mitre.org/
+Applicable Classes: Verification
+
+Namespace: N/A
+Specification Name: Common Configuration Scoring System
+Version: 1.0
+Reference URI: http://csrc.nist.gov/publications/PubsNISTIRs.html#NIST-IR-7502
+Applicable Classes: Scoring
+
+Namespace: http://cee.mitre.org
+Specification Name: Common Event Expression
+Version: 1.0 alpha
+Reference URI: http://cee.mitre.org/
+Applicable Classes: EventReport
+
+Namespace: http://cpe.mitre.org/language/2.0
+Specification Name: Common Platform Enumeration Reference
+Version: 2.3
+Reference URI: http://scap.nist.gov/specifications/cpe/,http://csrc.nist.gov/publications/PubsNISTIRs.html#NIST-IR-7695
+Applicable Classes: Platform
+
+Namespace: http://cpe.mitre.org/dictionary/2.0
+Specification Name: Common Platform Enumeration Dictionary
+Version: 2.3
+Reference URI: http://scap.nist.gov/specifications/cpe/,http://csrc.nist.gov/publications/PubsNISTIRs.html#NIST-IR-7697
+Applicable Classes: Platform
+
+Namespace: http://cve.mitre.org/cve/downloads/1.0
+Specification Name: Common Vulnerability and Exposures
+Version: 1.0
+Reference URI: http://cve.mitre.org/
+Applicable Classes: Vulnerability
+
+Namespace: http://www.icasi.org/CVRF/schema/cvrf/1.0
+Specification Name: Common Vulnerability Reporting Format
+Version: 1.0
+Reference URI: http://www.icasi.org/cvrf
+Applicable Classes: Vulnerability
+
+Namespace: http://scap.nist.gov/schema/cvss-v2/1.0
+Specification Name: Common Vulnerability Scoring System
+Version: 2
+Reference URI: http://www.first.org/cvss
+Applicable Classes: Scoring
+
+Namespace: N/A
+Specification Name: Common Weakness Enumeration
+Version: 5.1
+Reference URI: http://cwe.mitre.org/
+Applicable Classes: Weakness
+
+Namespace: N/A
+Specification Name: Common Weakness Scoring System
+Version: 0.8
+Reference URI: http://cwe.mitre.org/cwss/
+Applicable Classes: Scoring
+
+Namespace: http://maec.mitre.org/XMLSchema/maec-core-2
+Specification Name: Malware Attribute Enumeration and Characterization
+Version: 2.0
+Reference URI: http://maec.mitre.org/
+Applicable Classes: EventReport, AttackPattern
+
+Namespace: http://scap.nist.gov/schema/ocil/2.0
+Specification Name: Open Checklist Interactive Language
+Version: 2.0
+Reference URI: http://scap.nist.gov/specifications/ocil/,http://csrc.nist.gov/publications/PubsNISTIRs.html#NIST-IR-7692
+Applicable Classes: Verification
+
+Namespace: http://oval.mitre.org/XMLSchema/oval-definitions-5
+Specification Name: Open Vulnerability and Assessment Language
+Version: 5.10.1
+Reference URI: http://oval.mitre.org/
+Applicable Classes: Verification
+
+Namespace: http://oval.mitre.org/XMLSchema/oval-results-5
+Specification Name: Open Vulnerability and Assessment Language
+Version: 5.10.1
+Reference URI: http://oval.mitre.org/
+Applicable Classes: Verification
+
+Namespace: http://oval.mitre.org/XMLSchema/oval-common-5
+Specification Name: Open Vulnerability and Assessment Language
+Version: 5.10.1
+Reference URI: http://oval.mitre.org/
+Applicable Classes: Verification
+
+Namespace: http://checklists.nist.gov/xccdf/1.2
+Specification Name: Extensible Configuration Checklist Description
+Format
+Version: 1.2
+Reference URI: http://scap.nist.gov/specifications/xccdf/,http://csrc.nist.gov/publications/PubsNISTIRs.html#NIST-IR-7275-r4
+Applicable Classes: Verification

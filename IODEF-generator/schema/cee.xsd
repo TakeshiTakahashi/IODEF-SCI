@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <xs:schema xmlns="http://cee.mitre.org"
+     xmlns:xs="http://www.w3.org/2001/XMLSchema"
+     elementFormDefault="qualified"
+     targetNamespace="http://cee.mitre.org">
+
+     <xs:element name="CEE">
+       <xs:complexType>
+         <xs:sequence>
+           <xs:element name="Event">
+             <xs:complexType>
+               <xs:sequence>
+                 <xs:sequence>
+                   <xs:element name="id">
+                     <xs:simpleType>
+                       <xs:union memberTypes="CEEString nil"/>
+                     </xs:simpleType>
+                   </xs:element>
+                   <xs:element name="time" type="CEETimestamp"/>
+                   <xs:element name="action">
+                     <xs:simpleType>
+                       <xs:union memberTypes="CEETag nil"/>
+                     </xs:simpleType>
+                   </xs:element>
+                   <xs:element name="status">
+                     <xs:simpleType>
+                       <xs:union memberTypes="CEETag nil"/>
+                     </xs:simpleType>
+                   </xs:element>
+                   <xs:element name="p_sys_id">
+                     <xs:simpleType>
+                       <xs:union memberTypes="CEEString nil"/>
+                     </xs:simpleType>
+                   </xs:element>
+                   <xs:element name="p_prod_id">
+                     <xs:simpleType>
+                       <xs:union memberTypes="CEEString nil"/>
+                     </xs:simpleType>
+                   </xs:element>
+                 </xs:sequence>
+                 <xs:element name="Field" type="fieldType"
+                             maxOccurs="249" minOccurs="0"/>
+               </xs:sequence>
+             </xs:complexType>
+           </xs:element>
+           <xs:group maxOccurs="unbounded" minOccurs="0"
+                     ref="EventExtension"/>
+         </xs:sequence>
+         <xs:attribute name="profileURI" type="xs:anyURI"/>
+       </xs:complexType>
+     </xs:element>
+
+     <xs:element name="Log">
+       <xs:complexType>
+         <xs:sequence>
+           <xs:element maxOccurs="unbounded" minOccurs="0" ref="CEE"/>
+         </xs:sequence>
+         <xs:attribute name="profileURI" type="xs:anyURI"/>
+       </xs:complexType>
+     </xs:element>
+
+     <xs:group name="ceeFields">
+       <xs:sequence>
+         <xs:element name="id" type="CEEString"/>
+         <xs:element name="time" type="CEETimestamp"/>
+         <xs:element name="action" type="CEETag"/>
+         <xs:element name="status" type="CEETag"/>
+         <xs:element name="p_sys_id" type="CEEString"/>
+         <xs:element name="p_prod_id" type="CEEString"/>
+       </xs:sequence>
+     </xs:group>
+     <!--
+     <xs:complexType name="fieldType">
+       <xs:group maxOccurs="255" minOccurs="0" ref="ceeFieldType"/>
+       <xs:attribute name="name" use="required"/>
+     </xs:complexType>
+     -->
+     <xs:complexType name="fieldType">
+       <xs:group maxOccurs="unbounded" minOccurs="0"
+           ref="ceeFieldType"/>
+       <xs:attribute name="name" use="required">
+         <xs:simpleType>
+           <xs:restriction base="xs:string">
+             <xs:pattern value="[A-Za-z_][A-Za-z0-9_]{1,31}"/>
+           </xs:restriction>
+         </xs:simpleType>
+       </xs:attribute>
+     </xs:complexType>
+     <xs:group name="ceeFieldType">
+       <xs:choice>
+         <xs:element ref="string"/>
+         <xs:element ref="int"/>
+         <xs:element ref="bool"/>
+         <xs:element ref="tag"/>
+         <xs:element ref="float"/>
+         <xs:element ref="time"/>
+         <xs:element ref="dur"/>
+         <xs:element ref="ipv4"/>
+         <xs:element ref="ipv6"/>
+         <xs:element ref="mac"/>
+         <xs:element ref="binary"/>
+       </xs:choice>
+     </xs:group>
+     <xs:simpleType name="CEEBoolean">
+       <xs:restriction base="xs:boolean">
+         <xs:pattern value="true|false"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEEIpv4Address">
+       <xs:restriction base="CEEString">
+         <xs:pattern value="(((25[0-5])|(2[0-4]\d)|(1?\d{1,2}))\.){3}
+                            ((25[0-5])|(2[0-4]\d)|(1?\d{1,2}))"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEEIpv6Address">
+       <xs:restriction base="CEEString">
+         <!-- Normal IPv6 -->
+         <xs:pattern value="([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}
+           (%[^%\s]+)?"/>
+         <!-- IPv6 Hex Compressed -->
+         <xs:pattern value="(([0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4})*)?)::
+           (([0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4})*)?)(%[^%\s]+)?"/>
+         <!-- IPv6 Hex + IPv4 Dec -->
+         <xs:pattern value="(([0-9A-Fa-f]{1,4}:){6,6})
+           (25[0-5]|2[0-4]\d|[0-1]?\d?\d)
+           (\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}(%[^%\s]+)?"/>
+         <!-- IPv6 Hex Compressed + IPv4 Dec -->
+         <xs:pattern value="(([0-9A-Fa-f]{1,4}(:[0-9A-Fa-f]{1,4})*)?)::
+           (([0-9A-Fa-f]{1,4}:)*)(25[0-5]|2[0-4]\d|[0-1]?\d?\d)
+           (\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}(%[^%\s]+)?"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEEMacAddress">
+       <xs:restriction base="CEEString">
+         <xs:pattern value="([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEETag">
+       <xs:restriction base="CEEString">
+         <xs:pattern value="[A-Za-z_][A-Za-z0-9_]{1,31}"/>
+         <xs:maxLength value="32"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEEDuration">
+       <xs:restriction base="xs:duration">
+         <xs:pattern value="[^YM]*[DT][^\.]*(\.[0-9]+)?[^\.]*"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEEString">
+       <xs:restriction base="xs:string">
+         <xs:maxLength value="2048"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType name="CEEInteger">
+       <xs:restriction base="xs:long"/>
+     </xs:simpleType>
+     <xs:simpleType name="CEEFloat">
+       <xs:restriction base="xs:double"/>
+     </xs:simpleType>
+     <xs:simpleType name="CEETimestamp">
+       <xs:restriction base="xs:dateTime"/>
+     </xs:simpleType>
+     <xs:simpleType name="CEEBinary">
+       <xs:restriction base="xs:base64Binary">
+         <xs:maxLength value="2048"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:simpleType>
+       <xs:restriction base="xs:string">
+         <xs:enumeration value="-"/>
+       </xs:restriction>
+     </xs:simpleType>
+     <xs:element name="str" type="CEEString"/>
+     <xs:element name="int" type="CEEInteger"/>
+     <xs:element name="bool" type="CEEBoolean"/>
+     <xs:element name="tag" type="CEETag"/>
+     <xs:element name="float" type="CEEFloat"/>
+     <xs:element name="time" type="CEETimestamp"/>
+     <xs:element name="dur" type="CEEDuration"/>
+     <xs:element name="ipv4" type="CEEIpv4Address"/>
+     <xs:element name="ipv6" type="CEEIpv6Address"/>
+     <xs:element name="mac" type="CEEMacAddress"/>
+     <xs:element name="binary" type="CEEBinary"/>
+     <xs:group name="EventExtension">
+       <xs:choice>
+         <xs:element maxOccurs="unbounded" minOccurs="0"
+                     name="Augmentation">
+           <xs:complexType>
+             <xs:sequence>
+               <xs:sequence>
+                 <xs:element name="id" type="CEEString" minOccurs="0"/>
+                 <xs:element name="time" type="CEETimestamp"/>
+                 <xs:element name="action" type="CEETag" minOccurs="0"/>
+                 <xs:element name="status" type="CEETag" minOccurs="0"/>
+                 <xs:element name="p_sys_id" type="CEEString"/>
+                 <xs:element name="p_prod_id" type="CEEString"/>
+               </xs:sequence>
+               <xs:element name="Field" type="fieldType"
+                           maxOccurs="249" minOccurs="0"/>
+             </xs:sequence>
+             <xs:attribute name="order" type="xs:unsignedByte"
+                           use="required"/>
+           </xs:complexType>
+         </xs:element>
+       </xs:choice>
+     </xs:group>
+   </xs:schema>

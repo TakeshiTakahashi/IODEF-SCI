@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Log xmlns="http://cee.mitre.org">  <CEE>
+    <Event>
+      <id>example-event-1</id>
+      <time>2011-04-01T12:00:00-05:00</time>
+      <action>login</action>
+      <status>success</status>
+      <p_sys_id>10.10.1.1</p_sys_id>
+      <p_prod_id>product</p_prod_id>
+    </Event>
+  </CEE>
+
+</Log>

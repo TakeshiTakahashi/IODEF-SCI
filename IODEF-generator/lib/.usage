@@ -1,0 +1,2 @@
+sage: [-v -h] [-configfile filename] [-new filename [force]]|[-add filename] [-{ExData} [id|xml] namespace [dataID|xmlFilename] [platform [id|xml] namespace [dataID|xmlFilename]] [scoring namespace xmlFilename]]
+       {ExData}=[AttackPatten|Vulnerability|Weakness|Platform|EventReport|Verification|Remediation|Scoring]

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+            <Weakness_Catalog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Catalog_Name="VIEW LIST: CWE-1000: Research Concepts" Catalog_Version="2.1" Catalog_Date="2011-09-13" xsi:noNamespaceSchemaLocation="http://cwe.mitre.org/data/xsd/cwe_schema_v5.1.xsd">
+            
+		
+		<Weaknesses>
+                    <Weakness ID="5" Name="J2EE Misconfiguration: Data Transmission Without Encryption" Weakness_Abstraction="Variant" Status="Draft">
+			<Description>
+				<Description_Summary>Information sent over a network can be compromised while in
+					transit. An attacker may be able to read/modify the contents if the data are
+					sent in plaintext or are weakly encrypted.</Description_Summary>
+			</Description>
+			<Relationships>
+				<Relationship>
+					<Relationship_Views>
+						<Relationship_View_ID Ordinal="Primary">1000</Relationship_View_ID>
+					</Relationship_Views>
+					<Relationship_Target_Form>Weakness</Relationship_Target_Form>
+					<Relationship_Nature>ChildOf</Relationship_Nature>
+					<Relationship_Target_ID>319</Relationship_Target_ID>
+					<!--Cleartext Transmission of Sensitive Information-->
+				</Relationship>
+				<Relationship>
+					<Relationship_Views>
+						<Relationship_View_ID Ordinal="Primary">699</Relationship_View_ID>
+					</Relationship_Views>
+					<Relationship_Target_Form>Category</Relationship_Target_Form>
+					<Relationship_Nature>ChildOf</Relationship_Nature>
+					<Relationship_Target_ID>4</Relationship_Target_ID>
+					<!--J2EE Environment Issues-->
+				</Relationship>
+				<Relationship>
+					<Relationship_Views>
+						<Relationship_View_ID Ordinal="Primary">700</Relationship_View_ID>
+					</Relationship_Views>
+					<Relationship_Target_Form>Category</Relationship_Target_Form>
+					<Relationship_Nature>ChildOf</Relationship_Nature>
+					<Relationship_Target_ID>2</Relationship_Target_ID>
+					<!--Environment-->
+				</Relationship>
+			</Relationships>
+			<Applicable_Platforms>
+				<Languages>
+					<Language Language_Name="Java"/>
+				</Languages>
+			</Applicable_Platforms>
+			<Other_Notes>
+				<Note>
+					<Text>If an application uses SSL to guarantee confidential communication with
+						client browsers, the application configuration should make it impossible to
+						view any access controlled page without SSL. There are three common ways for
+						SSL to be bypassed:</Text>
+					<Block Block_Nature="Numeric_List">
+						<Text>A user manually enters URL and types "HTTP" rather than
+							"HTTPS".</Text>
+						<Text>Attackers intentionally send a user to an insecure URL.</Text>
+						<Text>A programmer erroneously creates a relative link to a page in the
+							application, which does not switch from HTTP to HTTPS. (This is
+							particularly easy to do when the link moves between public and secured
+							areas on a web site.)</Text>
+					</Block>
+				</Note>
+			</Other_Notes>
+			<Time_of_Introduction>
+				<Introductory_Phase>Implementation</Introductory_Phase>
+				<Introductory_Phase>Operation</Introductory_Phase>
+			</Time_of_Introduction>
+			<Common_Consequences>
+				<Common_Consequence>
+					<Consequence_Scope>Confidentiality</Consequence_Scope>
+					<Consequence_Scope>Integrity</Consequence_Scope>
+					<Consequence_Technical_Impact>Read application
+						data</Consequence_Technical_Impact>
+					<Consequence_Technical_Impact>Modify application
+						data</Consequence_Technical_Impact>
+				</Common_Consequence>
+			</Common_Consequences>
+			<Potential_Mitigations>
+				<Mitigation>
+					<Mitigation_Description>
+						<Text>The application configuration should ensure that SSL or an encryption
+							mechanism of equivalent strength and vetted reputation is used for all
+							access-controlled pages.</Text>
+					</Mitigation_Description>
+				</Mitigation>
+			</Potential_Mitigations>
+			<Taxonomy_Mappings>
+				<Taxonomy_Mapping Mapped_Taxonomy_Name="7 Pernicious Kingdoms">
+					<Mapped_Node_Name>J2EE Misconfiguration: Insecure Transport</Mapped_Node_Name>
+				</Taxonomy_Mapping>
+			</Taxonomy_Mappings>
+			<Content_History>
+				<Submission Submission_Source="Externally_Mined">
+					<Submitter>7 Pernicious Kingdoms</Submitter>
+				</Submission>
+				<Modification Modification_Source="External">
+					<Modifier>Eric Dalci</Modifier>
+					<Modifier_Organization>Cigital</Modifier_Organization>
+					<Modification_Date>2008-07-01</Modification_Date>
+					<Modification_Comment>updated Time_of_Introduction</Modification_Comment>
+				</Modification>
+				<Modification Modification_Source="Internal">
+					<Modifier>CWE Content Team</Modifier>
+					<Modifier_Organization>MITRE</Modifier_Organization>
+					<Modification_Date>2008-09-08</Modification_Date>
+					<Modification_Comment>updated Relationships, Other_Notes,
+						Taxonomy_Mappings</Modification_Comment>
+				</Modification>
+				<Modification Modification_Source="Internal">
+					<Modifier>CWE Content Team</Modifier>
+					<Modifier_Organization>MITRE</Modifier_Organization>
+					<Modification_Date>2011-03-29</Modification_Date>
+					<Modification_Comment>updated Other_Notes</Modification_Comment>
+				</Modification>
+				<Modification Modification_Source="Internal">
+					<Modifier>CWE Content Team</Modifier>
+					<Modifier_Organization>MITRE</Modifier_Organization>
+					<Modification_Date>2011-06-01</Modification_Date>
+					<Modification_Comment>updated Common_Consequences</Modification_Comment>
+				</Modification>
+				<Previous_Entry_Names>
+					<Previous_Entry_Name Name_Change_Date="2008-04-11">J2EE Misconfiguration:
+						Insecure Transport</Previous_Entry_Name>
+				</Previous_Entry_Names>
+			</Content_History>
+		</Weakness>
+		</Weaknesses>
+		
+            </Weakness_Catalog>

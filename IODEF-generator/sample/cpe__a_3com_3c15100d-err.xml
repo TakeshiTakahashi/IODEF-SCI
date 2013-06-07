@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpe-list xmlns:meta="http://scap.nist.gov/schema/cpe-dictionary-metadata/0.2" xmlns="http://cpe.mitre.org/dictionary/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns6="http://scap.nist.gov/schema/scap-core/0.1" xmlns:scap-core="http://scap.nist.gov/schema/scap-core/0.3" xmlns:config="http://scap.nist.gov/schema/configuration/0.1" xsi:schemaLocation="http://scap.nist.gov/schema/configuration/0.1 http://nvd.nist.gov/schema/configuration_0.1.xsd http://scap.nist.gov/schema/scap-core/0.3 http://nvd.nist.gov/schema/scap-core_0.3.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.2.xsd http://scap.nist.gov/schema/scap-core/0.1 http://nvd.nist.gov/schema/scap-core_0.1.xsd http://scap.nist.gov/schema/cpe-dictionary-metadata/0.2 http://nvd.nist.gov/schema/cpe-dictionary-metadata_0.2.xsd">
+  <generator>
+    <product_name>National Vulnerability Database (NVD)</product_name>
+    <product_version>2.16.0-SNAPSHOT (PRODUCTION)</product_version>
+    <schema_version>2.2</schema_version>
+    <timestamp>2011-09-24T23:50:00.376</timestamp>
+  </generator>
+  <cpe-item name="cpe:/a:3com:3c15100d">
+    <zzz>zzzzzz</zzz>
+    <title xml:lang="ja-JP">スリーコム Network Supervisor</title>
+    <title xml:lang="en-US">3Com Network Supervisor</title>
+    <meta:item-metadata modification-date="2011-01-12T09:35:43.020" status="DRAFT" nvd-id="44" />
+  </cpe-item>
+</cpe-list>

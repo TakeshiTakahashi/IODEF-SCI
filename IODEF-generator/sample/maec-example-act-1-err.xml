@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ MAEC Dynamic Triage Analysis Example
+ 
+ Based on SANS Reading Room Paper: A Detailed Analysis of an Advanced Persistent Threat Malware, by Frankie Li 
+ http://www.sans.org/reading_room/whitepapers/malicious/detailed-analysis-advanced-persistent-threat-malware_33814
+ 
+ This example builds upon the static triage example (http://maec.mitre.org/language/version2.0/static_triage_example.xml)-->
+<maec:MAEC_Bundle xmlns:AddressObj="http://cybox.mitre.org/XMLSchema/objects#AddressObject"
+ xmlns:cybox="http://cybox.mitre.org/XMLSchema/cybox_v0.7"
+ xmlns:maec="http://maec.mitre.org/XMLSchema/maec-core-2"
+ xmlns:mmdef="http://xml/metadataSharing.xsd"
+ xmlns:commonTypes="http://cybox.mitre.org/XMLSchema/objects#Common"
+ xmlns:ProcessObj="http://cybox.mitre.org/XMLSchema/objects#ProcessObject"
+ xmlns:WinProcessObj="http://cybox.mitre.org/XMLSchema/objects#WinProcessObject"
+ xmlns:FileObj="http://cybox.mitre.org/XMLSchema/objects#FileObject"
+ xmlns:WinExecFileObj="http://cybox.mitre.org/XMLSchema/objects#WinExecFileObject"
+ xmlns:MutexObj="http://cybox.mitre.org/XMLSchema/objects#MutexObject"
+ xmlns:WinMutexObj="http://cybox.mitre.org/XMLSchema/objects#WinMutexObject"
+ xmlns:URIObj="http://cybox.mitre.org/XMLSchema/objects#URIObject"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://maec.mitre.org/XMLSchema/maec-core-2 http://maec.mitre.org/language/version2.0/maec-core-schema.xsd
+ http://cybox.mitre.org/XMLSchema/objects#WinExecFileObject http://cybox.mitre.org/XMLSchema/objects/Win_Executable_File_Object.xsd 
+ http://cybox.mitre.org/XMLSchema/objects#WinMutexObject http://cybox.mitre.org/XMLSchema/objects/Win_Mutex_Object.xsd 
+ http://cybox.mitre.org/XMLSchema/objects#WinProcessObject http://cybox.mitre.org/XMLSchema/objects/Win_Process_Object.xsd 
+ http://cybox.mitre.org/XMLSchema/objects#URIObject http://cybox.mitre.org/XMLSchema/objects/URI_Object.xsd"
+ id="maec-example-bnd-2" schema_version="2.0">
+
+ <maec:Actions>
+  <maec:Action id="maec-example-act-1" Type="Create"
+   Context="Host" Action_Status="Success">
+   <XXX>xxxx</XXX>
+   <cybox:Action_Name>
+    <cybox:Defined_Name>Create File</cybox:Defined_Name>
+   </cybox:Action_Name>
+   <cybox:Discovery_Method SourceType="Tool">
+    <cybox:Tools>
+     <cybox:Tool IDREF="analysis-tool-2"/>
+    </cybox:Tools>
+   </cybox:Discovery_Method>
+   <maec:Associated_Objects>
+    <maec:Associated_Object idref="maec-example-obj-2" AssociationType="Initiating"/>
+    <maec:Associated_Object id="maec-example-obj-3" Type="File" AssociationType="Affected">
+     <cybox:Defined_Object xsi:type="WinExecFileObj:Windows_Executable_File_Object_Type">
+      <FileObj:File_Name Datatype="String">ws2help.PNF</FileObj:File_Name>
+      <FileObj:Full_Path Datatype="String" PatternType="Regex" RegexSyntax="PCRE">^C:\\Documents and Settings\\\s+user\s+\\Local
+       Settings\\Application\\Data</FileObj:Full_Path>
+     </cybox:Defined_Object>
+    </maec:Associated_Object>
+   </maec:Associated_Objects>
+ </maec:Action></maec:Actions></maec:MAEC_Bundle>

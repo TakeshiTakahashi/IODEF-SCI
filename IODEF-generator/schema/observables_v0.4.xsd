@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:observables="http://capec.mitre.org/observables" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://capec.mitre.org/observables" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="Observables" type="observables:ObservablesType">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ObservablesType">
+		<xs:sequence>
+			<xs:element name="Observable" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="observables:ObservableType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ObservableType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="Description" type="observables:Structured_Text_Type" minOccurs="0"/>
+				<xs:element name="Keywords" type="xs:string" minOccurs="0"/>
+				<xs:element name="Measure" type="observables:MeasureType" minOccurs="0"/>
+				<xs:element name="Delta" minOccurs="0">
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="Change" type="xs:boolean"/>
+							<xs:element name="Trend">
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Increasing"/>
+										<xs:enumeration value="Decreasing"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="Frequency">
+								<xs:complexType>
+									<xs:attribute name="Rate" type="xs:float" use="required"/>
+									<xs:attribute name="Units" type="xs:string" use="required"/>
+									<xs:attribute name="Scale" type="xs:string" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Noisiness" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="High"/>
+							<xs:enumeration value="Medium"/>
+							<xs:enumeration value="Low"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Ease_of_Obfuscation" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="High"/>
+							<xs:enumeration value="Medium"/>
+							<xs:enumeration value="Low"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Obfuscation_Techniques" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Obfuscation_Technique" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Description" type="observables:Structured_Text_Type"/>
+										<xs:element name="Observables" type="observables:ObservablesType"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Observable" type="observables:ObservableType"/>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="ID" type="xs:ID"/>
+		<xs:attribute name="IDREF" type="xs:IDREF"/>
+		<xs:attribute name="Operator">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="OR"/>
+					<xs:enumeration value="AND"/>
+					<xs:enumeration value="NOT"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MeasureType">
+		<xs:sequence>
+			<xs:element name="Measure_Source" type="observables:Measure_SourceType" minOccurs="0"/>
+			<xs:element name="Signature">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Stateful_Measure" type="observables:Stateful_MeasureType" minOccurs="0"/>
+						<xs:element name="Event" type="observables:Event_Type" minOccurs="0"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Measure_SourceType">
+		<xs:attribute name="Class">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Network"/>
+					<xs:enumeration value="Software"/>
+					<xs:enumeration value="State"/>
+					<xs:enumeration value="Analytics"/>
+					<xs:enumeration value="Manual"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="NIDS"/>
+					<xs:enumeration value="NIPS"/>
+					<xs:enumeration value="HIDS"/>
+					<xs:enumeration value="HIPS"/>
+					<xs:enumeration value="Firewall"/>
+					<xs:enumeration value="Router"/>
+					<xs:enumeration value="Proxy"/>
+					<xs:enumeration value="Gateway"/>
+					<xs:enumeration value="CDS"/>
+					<xs:enumeration value="SNMP/MIBS"/>
+					<xs:enumeration value="Comm Logs"/>
+					<xs:enumeration value="OS/Device Driver APIs"/>
+					<xs:enumeration value="Frameworks"/>
+					<xs:enumeration value="VM Hypervisor"/>
+					<xs:enumeration value="TPM"/>
+					<xs:enumeration value="Application Logs"/>
+					<xs:enumeration value="Web Logs"/>
+					<xs:enumeration value="Application Framework"/>
+					<xs:enumeration value="A/V"/>
+					<xs:enumeration value="DBMS Log/Monitor"/>
+					<xs:enumeration value="Vulnerability Scanner"/>
+					<xs:enumeration value="Configuration Scanner"/>
+					<xs:enumeration value="Asset Scanner"/>
+					<xs:enumeration value="SIM"/>
+					<xs:enumeration value="SEM"/>
+					<xs:enumeration value="Anomaly Detection"/>
+					<xs:enumeration value="Help Desk"/>
+					<xs:enumeration value="TIPS"/>
+					<xs:enumeration value="Incident Management"/>
+					<xs:enumeration value="IAVM"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Name" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="Stateful_MeasureType">
+		<xs:sequence>
+			<xs:element name="Description" type="observables:Structured_Text_Type" minOccurs="0"/>
+			<xs:element name="Object" type="observables:ObjectType"/>
+		</xs:sequence>
+		<xs:attribute name="Name"/>
+	</xs:complexType>
+	<xs:complexType name="Event_Type">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="Description" type="observables:Structured_Text_Type"/>
+				<xs:element name="Action" type="observables:ActionType"/>
+			</xs:sequence>
+			<xs:sequence maxOccurs="unbounded">
+				<xs:element name="Event" type="observables:Event_Type"/>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="Type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="File Ops (CRUD)"/>
+					<xs:enumeration value="Registry Ops"/>
+					<xs:enumeration value="Memory Ops"/>
+					<xs:enumeration value="Process Mgt"/>
+					<xs:enumeration value="Thread Mgt"/>
+					<xs:enumeration value="Service Mgt"/>
+					<xs:enumeration value="Session Mgt"/>
+					<xs:enumeration value="API Calls"/>
+					<xs:enumeration value="Port Scan"/>
+					<xs:enumeration value="IP Ops"/>
+					<xs:enumeration value="DNS Lookup Ops"/>
+					<xs:enumeration value="Socket Ops"/>
+					<xs:enumeration value="IPC"/>
+					<xs:enumeration value="Configuration Management"/>
+					<xs:enumeration value="User/Password Mgt"/>
+					<xs:enumeration value="Account Ops (App Layer)"/>
+					<xs:enumeration value="HTTP Traffic"/>
+					<xs:enumeration value="App Layer Traffic"/>
+					<xs:enumeration value="Packet Traffic"/>
+					<xs:enumeration value="Data Flow"/>
+					<xs:enumeration value="Anomoly Events"/>
+					<xs:enumeration value="Technical Compliance"/>
+					<xs:enumeration value="Procedural Compliance"/>
+					<xs:enumeration value="GUI/KVM"/>
+					<xs:enumeration value="Autorun"/>
+					<xs:enumeration value="USB/Media Detection"/>
+					<xs:enumeration value="SQL"/>
+					<xs:enumeration value="DHCP"/>
+					<xs:enumeration value="Redirection"/>
+					<xs:enumeration value="Authentication Ops"/>
+					<xs:enumeration value="Authorization (ACL)"/>
+					<xs:enumeration value="Privilege Ops"/>
+					<xs:enumeration value="Basic System Ops"/>
+					<xs:enumeration value="Signature Detection"/>
+					<xs:enumeration value="Auto-update Ops"/>
+					<xs:enumeration value="Application Logic"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ActionType">
+		<xs:sequence>
+			<xs:element name="Action_Aliases" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Action_Alias" type="xs:string" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Action_State" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Success"/>
+						<xs:enumeration value="Fail"/>
+						<xs:enumeration value="Error"/>
+						<xs:enumeration value="Complete/Finish"/>
+						<xs:enumeration value="Pending"/>
+						<xs:enumeration value="Ongoing"/>
+						<xs:enumeration value="Unknown"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Object" type="observables:ObjectType" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:ID"/>
+		<xs:attribute name="ID_REF" type="xs:IDREF"/>
+		<xs:attribute name="Name">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Login/Logon"/>
+					<xs:enumeration value="Logout/Logoff"/>
+					<xs:enumeration value="Start"/>
+					<xs:enumeration value="Stop"/>
+					<xs:enumeration value="Suspend/Pause"/>
+					<xs:enumeration value="Resume"/>
+					<xs:enumeration value="Create"/>
+					<xs:enumeration value="Remove/Delete"/>
+					<xs:enumeration value="Access/Open"/>
+					<xs:enumeration value="Close"/>
+					<xs:enumeration value="Move"/>
+					<xs:enumeration value="Copy/Duplicate"/>
+					<xs:enumeration value="Read"/>
+					<xs:enumeration value="Write"/>
+					<xs:enumeration value="Execute"/>
+					<xs:enumeration value="Quarantine"/>
+					<xs:enumeration value="Find"/>
+					<xs:enumeration value="Clean"/>
+					<xs:enumeration value="Block"/>
+					<xs:enumeration value="Update"/>
+					<xs:enumeration value="Upgrade"/>
+					<xs:enumeration value="Scan"/>
+					<xs:enumeration value="Filter"/>
+					<xs:enumeration value="Install"/>
+					<xs:enumeration value="Allocate"/>
+					<xs:enumeration value="Initialize"/>
+					<xs:enumeration value="Save"/>
+					<xs:enumeration value="Connect"/>
+					<xs:enumeration value="Disconnect"/>
+					<xs:enumeration value="Audit"/>
+					<xs:enumeration value="Replicate"/>
+					<xs:enumeration value="Detect"/>
+					<xs:enumeration value="Alert"/>
+					<xs:enumeration value="Backup"/>
+					<xs:enumeration value="Search"/>
+					<xs:enumeration value="Restore"/>
+					<xs:enumeration value="Get"/>
+					<xs:enumeration value="Set"/>
+					<xs:enumeration value="Assign"/>
+					<xs:enumeration value="Send"/>
+					<xs:enumeration value="Receive"/>
+					<xs:enumeration value="Transmit"/>
+					<xs:enumeration value="Map"/>
+					<xs:enumeration value="Load"/>
+					<xs:enumeration value="Query"/>
+					<xs:enumeration value="Enumerate"/>
+					<xs:enumeration value="Bind"/>
+					<xs:enumeration value="Free"/>
+					<xs:enumeration value="Kill"/>
+					<xs:enumeration value="Encrypt"/>
+					<xs:enumeration value="Decrypt"/>
+					<xs:enumeration value="Encode"/>
+					<xs:enumeration value="Decode"/>
+					<xs:enumeration value="Pack"/>
+					<xs:enumeration value="Unpack"/>
+					<xs:enumeration value="Archive"/>
+					<xs:enumeration value="Compress"/>
+					<xs:enumeration value="Decompress"/>
+					<xs:enumeration value="Download"/>
+					<xs:enumeration value="Upload"/>
+					<xs:enumeration value="Load"/>
+					<xs:enumeration value="Fork"/>
+					<xs:enumeration value="Join"/>
+					<xs:enumeration value="Merge"/>
+					<xs:enumeration value="Interleave"/>
+					<xs:enumeration value="Schedule"/>
+					<xs:enumeration value="Call"/>
+					<xs:enumeration value="Compare"/>
+					<xs:enumeration value="Wipe/Destroy/Purge"/>
+					<xs:enumeration value="Throw/Raise"/>
+					<xs:enumeration value="Lock"/>
+					<xs:enumeration value="Unlock"/>
+					<xs:enumeration value="Synchronize"/>
+					<xs:enumeration value="Hook"/>
+					<xs:enumeration value="Unhook"/>
+					<xs:enumeration value="Draw"/>
+					<xs:enumeration value="Click"/>
+					<xs:enumeration value="Press"/>
+					<xs:enumeration value="Depress"/>
+					<xs:enumeration value="Close(network)"/>
+					<xs:enumeration value="Open (network)"/>
+					<xs:enumeration value="Callback"/>
+					<xs:enumeration value="Drop"/>
+					<xs:enumeration value="Accept"/>
+					<xs:enumeration value="Deny"/>
+					<xs:enumeration value="Modify"/>
+					<xs:enumeration value="LIsten"/>
+					<xs:enumeration value="Send"/>
+					<xs:enumeration value="Start_Winsock"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ObjectType">
+		<xs:sequence>
+			<xs:element name="Object_State" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Exists"/>
+						<xs:enumeration value="Does Not Exist"/>
+						<xs:enumeration value="Open"/>
+						<xs:enumeration value="Closed"/>
+						<xs:enumeration value="Active"/>
+						<xs:enumeration value="Inactive"/>
+						<xs:enumeration value="Locked"/>
+						<xs:enumeration value="Unlocked"/>
+						<xs:enumeration value="Started"/>
+						<xs:enumeration value="Stopped"/>
+						<xs:enumeration value="Contains"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Defined_Object" type="observables:Defined_Object_Type" minOccurs="0"/>
+			<xs:element name="Custom_Attributes" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Attribute" type="observables:AttributeType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="ID" type="xs:ID"/>
+		<xs:attribute name="ID_REF" type="xs:IDREF"/>
+		<xs:attribute name="Type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="File"/>
+					<xs:enumeration value="Directory"/>
+					<xs:enumeration value="Module"/>
+					<xs:enumeration value="Packet"/>
+					<xs:enumeration value="Key/Key Group"/>
+					<xs:enumeration value="Hive"/>
+					<xs:enumeration value="Process"/>
+					<xs:enumeration value="Thread"/>
+					<xs:enumeration value="Mutex"/>
+					<xs:enumeration value="Event"/>
+					<xs:enumeration value="Service/Daemon"/>
+					<xs:enumeration value="Library"/>
+					<xs:enumeration value="Package"/>
+					<xs:enumeration value="Pipe"/>
+					<xs:enumeration value="Socket"/>
+					<xs:enumeration value="IP Address"/>
+					<xs:enumeration value="Port"/>
+					<xs:enumeration value="Protocol"/>
+					<xs:enumeration value="AS"/>
+					<xs:enumeration value="URI"/>
+					<xs:enumeration value="Host"/>
+					<xs:enumeration value="Session"/>
+					<xs:enumeration value="Session Token"/>
+					<xs:enumeration value="Account"/>
+					<xs:enumeration value="Device (physical)"/>
+					<xs:enumeration value="Handle"/>
+					<xs:enumeration value="Heap"/>
+					<xs:enumeration value="Memory Address"/>
+					<xs:enumeration value="Memory Page"/>
+					<xs:enumeration value="Window"/>
+					<xs:enumeration value="Dialog"/>
+					<xs:enumeration value="Parameter"/>
+					<xs:enumeration value="Authentication Token"/>
+					<xs:enumeration value="Encryption Token"/>
+					<xs:enumeration value="Web Query"/>
+					<xs:enumeration value="Protocol Header"/>
+					<xs:enumeration value="Protocol Field"/>
+					<xs:enumeration value="Link"/>
+					<xs:enumeration value="SQL Query"/>
+					<xs:enumeration value="Database"/>
+					<xs:enumeration value="ACL"/>
+					<xs:enumeration value="Role"/>
+					<xs:enumeration value="System"/>
+					<xs:enumeration value="VM"/>
+					<xs:enumeration value="Signature"/>
+					<xs:enumeration value="Channel"/>
+					<xs:enumeration value="API Call"/>
+					<xs:enumeration value="Environment Variable"/>
+					<xs:enumeration value="Application"/>
+					<xs:enumeration value="Network"/>
+					<xs:enumeration value="Configuration"/>
+					<xs:enumeration value="Policy"/>
+					<xs:enumeration value="Tack"/>
+					<xs:enumeration value="Malware"/>
+					<xs:enumeration value="Message"/>
+					<xs:enumeration value="Email Message"/>
+					<xs:enumeration value="Media"/>
+					<xs:enumeration value="Operating System"/>
+					<xs:enumeration value="Query"/>
+					<xs:enumeration value="Domain"/>
+					<xs:enumeration value="Event"/>
+					<xs:enumeration value="Other"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Defined_Object_Type" abstract="true"/>
+	<xs:complexType name="AttributeType">
+		<xs:choice>
+			<xs:element name="Value" type="xs:string"/>
+			<xs:element name="Value_Range">
+				<xs:complexType>
+					<xs:attribute name="Value_Range_Start" type="xs:string"/>
+					<xs:attribute name="Value_Range_End"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Value_Set">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Value" type="xs:string" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Attribute" type="observables:AttributeType"/>
+			</xs:sequence>
+		</xs:choice>
+		<xs:attribute name="ID" type="xs:ID"/>
+		<xs:attribute name="ID_REF" type="xs:IDREF"/>
+		<xs:attribute name="Type">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="String"/>
+					<xs:enumeration value="Int"/>
+					<xs:enumeration value="Float"/>
+					<xs:enumeration value="IPv4 Address"/>
+					<xs:enumeration value="IPv6 Address"/>
+					<xs:enumeration value="Host Name"/>
+					<xs:enumeration value="MAC Address"/>
+					<xs:enumeration value="Domain Name"/>
+					<xs:enumeration value="Path"/>
+					<xs:enumeration value="URI"/>
+					<xs:enumeration value="Date"/>
+					<xs:enumeration value="DateTime"/>
+					<xs:enumeration value="Boolean"/>
+					<xs:enumeration value="Duration"/>
+					<xs:enumeration value="TimeZone"/>
+					<xs:enumeration value="Hex"/>
+					<xs:enumeration value="Octal"/>
+					<xs:enumeration value="Binary"/>
+					<xs:enumeration value="Subnet Mask"/>
+					<xs:enumeration value="UUID/GUID"/>
+					<xs:enumeration value="Collections"/>
+					<xs:enumeration value="CVE#"/>
+					<xs:enumeration value="CWE#"/>
+					<xs:enumeration value="CAPEC#"/>
+					<xs:enumeration value="CCE#"/>
+					<xs:enumeration value="CPE#"/>
+					<xs:enumeration value="Complex"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="Name" type="xs:string"/>
+		<xs:attribute name="Condition">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Equals"/>
+					<xs:enumeration value="Does Not Equal"/>
+					<xs:enumeration value="Contains"/>
+					<xs:enumeration value="Does Not Contain"/>
+					<xs:enumeration value="Starts With"/>
+					<xs:enumeration value="Ends With"/>
+					<xs:enumeration value="Greater Than"/>
+					<xs:enumeration value="Less Than"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Structured_Text_Type">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:group ref="observables:Structured_Text_Group"/>
+				<xs:element ref="observables:Block">
+					<xs:annotation>
+						<xs:documentation> Block is a Structured_Text element consisting of one of Text_Title, Text, Code_Example_Language, or Code followed by another Block element.	Structured_Text elements help define whitespace and text segments.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="Structured_Text_Group">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Text_Title" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation> Presentation Element: This element is used to definebold-faced title for a subsequent block of text. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Text" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation> Presentation Element: This element is used to define a paragraph of text. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Code_Example_Language" type="observables:Language_Type" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Presentation Element: This element is used to identify the programming language being used in the following block of Code</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Code" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation> Presentation Element: This element is used to define a line of code. </xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Images" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Image" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation> Presentation Element: This element is used to define an image. </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence maxOccurs="unbounded">
+										<xs:element name="Image_Location" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>This element provides the location of the image file.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="Image_Title" type="xs:string">
+											<xs:annotation>
+												<xs:documentation>This element provides a title for the image.</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="Block">
+		<xs:annotation>
+			<xs:documentation> Block is a Structured_Text element consisting of one of Text_Title,
+				Text, Code_Example_Language, or Code followed by another Block element.
+				Structured_Text elements help define whitespace and text segments.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:group ref="observables:Structured_Text_Group"/>
+				<xs:element ref="observables:Block">
+					<xs:annotation>
+						<xs:documentation> Block is a Structured_Text element consisting of one of Text_Title,Text, Code_Example_Language, or Code followed by another Block element. Structured_Text elements help define whitespace and text segments.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="Block_Nature">
+				<xs:annotation>
+					<xs:documentation> This attribute identifies the nature of the content containedwithin the Block. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Good_Code"/>
+						<xs:enumeration value="Bad_Code"/>
+						<xs:enumeration value="Mitigation_Code"/>
+						<xs:enumeration value="Attack"/>
+						<xs:enumeration value="Result"/>
+						<xs:enumeration value="List"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Reference_List_Type">
+		<xs:annotation>
+			<xs:documentation>The References_List_Type contains one or more Reference elements, each
+				of which provide further reading and insight into the item. This should be filled
+				out as appropriate.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Reference" type="observables:Reference_Type" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation> Each Reference subelement should provide a single source from which more information and deeper insight can be obtained, such as a research paper or an excerpt from a publication. Multiple Reference subelements can exist. The sole attribute of this element is the id. The id is optional and translates to a preceding footnote below the context notes if the author of the entry wants to cite a reference. Not all subelements need to be completed, since some are designed for web references and others are designed for book references. The fields Reference_Author and Reference_Title should be filled out for all references if possible. Reference_Section and Reference_Date can be included for either book references or online references. Reference_Edition, Reference_Publication, Reference_Publisher, and Reference_PubDate are intended for book references,
+ however they can be included where appropriate for other types of references. Reference_Link is intended for web references, however it can be included for book references as well if applicable. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Reference_Type">
+		<xs:sequence>
+			<xs:element name="Reference_Description" type="observables:Structured_Text_Type" minOccurs="0"/>
+			<xs:element name="Reference_Author" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation> This element identifies an individual author of the material being referenced. It is not required, but may be repeated sequentially in order to identify multiple authors for a single piece of material.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element identifies the title of the material beingreferenced. It is not required if the material does not have a title.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Section" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element is intended to provide a means of identifying the exact location of the material inside of the publication source, such as the relevant pages of a research paper, the appropriate chapters from a book, etc. This is useful for both book references and internet references.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Edition" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element identifies the edition of the material being
+ referenced in the event that multiple editions of the material exist. This will usually only be useful for book references. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Publication" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element identifies the publication source of the reference material, if one exists. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Publisher" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element identifies the publisher of the reference material, if one exists. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Date" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element identifies the date when the reference was included in the entry. This provides the reader with a time line for when the material in the reference, usually the link, was valid. The date should be of the format YYYY-MM-DD. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_PubDate" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This field describes the date when the reference was published YYYY. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Reference_Link" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation> This element should hold the URL for the material being referenced, if one exists. This should always be used for web references, and may optionally be used for book and other publication references.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Reference_ID">
+			<xs:annotation>
+				<xs:documentation> The id attribute is optional and is used as a mechanism forciting text in the entry. If an id is provided, it is placed between brackets and precedes this reference and the matching id should be used inside of the text for the attack pattern itself where this reference is applicable. All reference ids assigned within an entry must be unique. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="Language_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="C++"/>
+			<xs:enumeration value="C#"/>
+			<xs:enumeration value="Java"/>
+			<xs:enumeration value="JSP"/>
+			<xs:enumeration value="Javascript"/>
+			<xs:enumeration value="ASP.NET"/>
+			<xs:enumeration value="SQL"/>
+			<xs:enumeration value="Python"/>
+			<xs:enumeration value="Perl"/>
+			<xs:enumeration value="PHP"/>
+			<xs:enumeration value="SOAP"/>
+			<xs:enumeration value="Ruby"/>
+			<xs:enumeration value="Shell"/>
+			<xs:enumeration value="PseudoCode"/>
+			<xs:enumeration value=".NET"/>
+			<xs:enumeration value="Assembly"/>
+			<xs:enumeration value="XML"/>
+			<xs:enumeration value="HTML"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Frequency_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Often"/>
+			<xs:enumeration value="Sometimes"/>
+			<xs:enumeration value="Rarely"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Status_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Deprecated"/>
+			<xs:enumeration value="Incomplete"/>
+			<xs:enumeration value="Draft"/>
+			<xs:enumeration value="Usable"/>
+			<xs:enumeration value="Stable"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

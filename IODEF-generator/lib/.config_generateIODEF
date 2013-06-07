@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IODEF-Document version="1.00" lang="en"
+ xmlns="urn:ietf:params:xml:ns:iodef-1.0"
+ xmlns:iodef="urn:ietf:params:xml:ns:iodef-1.0"
+ xmlns:iodef-sci="urn:ietf:params:xml:ns:iodef-sci-1.0"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Incident purpose="reporting">
+    <IncidentID name="">000000</IncidentID>
+    <ReportTime>1970-01-01T00:00:00+00:00</ReportTime>
+    <Description></Description>
+    <Assessment>
+      <Impact completion="failed" type="admin"/>
+    </Assessment>
+    <Method>
+      <Description></Description>
+    </Method>
+    <Contact role="creator" type="organization">
+      <ContactName></ContactName>
+      <RegistryHandle registry="arin"></RegistryHandle>
+      <Email>com</Email>
+    </Contact>
+	<EventData>
+      <Flow>
+        <System category="source">
+          <Node>
+            <Address category="ipv4-addr">0.0.0.0</Address>
+            <Counter type="event">0</Counter>
+          </Node>
+        </System>
+        <System category="target">
+          <Node>
+            <Address category="ipv4-net">0.0.0.0/0</Address>
+          </Node>
+          <Service ip_protocol="6">
+            <Port>0</Port>
+          </Service>
+        </System>
+      </Flow>
+      <Expectation action="block-host" />
+      <Expectation action="other"/>
+      <!-- <RecordItem> has an excerpt from a log -->
+      <Record>
+        <RecordData>
+          <DateTime>1970-01-01T00:00:00+00:00</DateTime>
+          <Description></Description>
+          <RecordItem dtype="string"/>
+        </RecordData>
+      </Record>
+    </EventData>
+    <History>
+      <!-- Contact was previously made with the source network owner -->
+      <HistoryItem action="contact-source-site">
+        <DateTime>1979-01-01T00:00:00+00:00</DateTime>
+        <Description></Description>
+      </HistoryItem>
+    </History>
+  </Incident>
+</IODEF-Document>

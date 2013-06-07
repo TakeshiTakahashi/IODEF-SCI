@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    targetNamespace="http://jvndb.jvn.jp/myjvn/Results" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:mjres="http://jvndb.jvn.jp/myjvn/Results" 
+    xmlns:cdf="http://checklists.nist.gov/xccdf/1.1" 
+    xmlns:cpe-dist="http://cpe.mitre.org/dictionary/2.0" 
+    xmlns:oval-def="http://oval.mitre.org/XMLSchema/oval-definitions-5" 
+    xmlns:jvndef="http://jvndb.jvn.jp/myjvn/jvndefinitions" 
+    xmlns:jvnmeta="http://jvndb.jvn.jp/myjvn/jvnmetadata" 
+    xmlns:mjstat="http://jvndb.jvn.jp/myjvn/Statistics" 
+    xmlns:status="http://jvndb.jvn.jp/myjvn/Status" 
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified" 
+    version="3.1">
+
+    <!-- ================================================== -->
+    <!-- =====  Schema imports  -->
+    <!-- ================================================== -->
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace"                schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+    <xs:import namespace="http://checklists.nist.gov/xccdf/1.1"                schemaLocation="http://jvndb.jvn.jp/schema/xccdf-1.1.4.xsd"/>
+    <xs:import namespace="http://cpe.mitre.org/dictionary/2.0"                 schemaLocation="http://jvndb.jvn.jp/schema/cpe-dictionary_2.2.xsd"/>
+    <xs:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5"  schemaLocation="http://jvndb.jvn.jp/schema/oval-definitions-schema_5.8.xsd"/>
+    <xs:import namespace="http://oval.mitre.org/XMLSchema/oval-definitions-5#windows"  schemaLocation="http://jvndb.jvn.jp/schema/windows-definitions-schema_5.8.xsd"/>
+    <xs:import namespace="http://jvndb.jvn.jp/myjvn/jvndefinitions"            schemaLocation="http://jvndb.jvn.jp/schema/jvndefinitions_0.2.xsd"/>
+    <xs:import namespace="http://jvndb.jvn.jp/myjvn/jvnmetadata"               schemaLocation="http://jvndb.jvn.jp/schema/jvnmetadata_0.3.xsd"/>
+    <xs:import namespace="http://jvndb.jvn.jp/myjvn/Statistics"                schemaLocation="http://jvndb.jvn.jp/schema/statistics_0.2.xsd"/>
+    <xs:import namespace="http://jvndb.jvn.jp/myjvn/Status"                    schemaLocation="http://jvndb.jvn.jp/schema/status_3.1.xsd"/>
+
+    <!-- ================================================== -->
+    <!-- =====  Schema description  -->
+    <!-- ================================================== -->
+    <xs:annotation>
+        <xs:documentation xml:lang="en-US">This is an XML Schema for the product list of MyJVN. It is used to transfer a collection of product CPE Names. </xs:documentation>
+        <xs:documentation xml:lang="ja">MyJVN 製品開発ベンダ／製品一覧用 XML スキーマ</xs:documentation>
+        <xs:appinfo>
+            <schema>MyJVN Results</schema>
+            <author>Masato Terada</author>
+            <version>3.1</version>
+            <date>2011-08-17T09:00:00.000+09:00</date>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <!-- ================================================== -->
+    <!-- =====  Element Declarations  -->
+    <!-- ================================================== -->
+    <xs:element name="Result" type="mjres:Result">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">Result of MyJVN Product List</xs:documentation>
+            <xs:documentation xml:lang="ja">MyJVN 製品一覧の結果</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="VendorInfo" type="mjres:VendorInfo">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">Vendor Name List</xs:documentation>
+            <xs:documentation xml:lang="ja">製品開発ベンダ一覧</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Vendor" type="mjres:Vendor">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">Vendor Entry</xs:documentation>
+            <xs:documentation xml:lang="ja">製品開発ベンダのエントリ</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Product" type="mjres:Product">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">Product Entry</xs:documentation>
+            <xs:documentation xml:lang="ja">製品のエントリ</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="OvalList" type="mjres:OvalList">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">OVAL Entry List of Product</xs:documentation>
+            <xs:documentation xml:lang="ja">製品のOVALエントリ一覧</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="OvalListItem" type="mjres:OvalListItem">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">OVAL Entry of Product</xs:documentation>
+            <xs:documentation xml:lang="ja">製品のOVALエントリ</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="XccdfList" type="mjres:XccdfList">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">XCCDF Entry List</xs:documentation>
+            <xs:documentation xml:lang="ja">XCCDF エントリ一覧</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="XccdfListItem" type="mjres:XccdfListItem">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">XCCDF Entry</xs:documentation>
+            <xs:documentation xml:lang="ja">XCCDF エントリ</xs:documentation>
+        </xs:annotation>
+    </xs:element>
+
+    <!-- ================================================== -->
+    <!-- =====  Complex Type Definitions  -->
+    <!-- ================================================== -->
+    <xs:complexType name="Result">
+        <xs:sequence>
+            <xs:element name="VendorInfo" type="mjres:VendorInfo" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SecurityCheckInfo" type="mjres:SecurityCheckInfo" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="XccdfList" type="mjres:XccdfList"   minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="cdf:Benchmark"                       minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="cpe-dist:cpe-list"                   minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="oval-def:oval_definitions"           minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="mjstat:sumJvnDb"                     minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="mjstat:sumCvss"                      minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="mjstat:sumCwe"                       minOccurs="0" maxOccurs="1"/>
+            <xs:element ref="status:Status"                       minOccurs="1" maxOccurs="1"/>
+            <xs:any namespace="##other" processContents="lax"     minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="version" type="xs:decimal" use="required" fixed="3.1"/>
+    </xs:complexType>
+
+    <xs:complexType name="VendorInfo">
+        <xs:sequence>
+            <xs:element name="Vendor" type="mjres:Vendor" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Vendor">
+        <xs:sequence>
+            <xs:element name="Product" type="mjres:Product" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="vname" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Vendor Title</xs:documentation>
+                <xs:documentation xml:lang="ja">製品開発ベンダ名</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="cpe" type="mjres:cpenamePattern" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Vendor CPE Name</xs:documentation>
+                <xs:documentation xml:lang="ja">製品開発ベンダ CPE 名</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="vid" type="xs:integer" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Vendor unique number in JVN iPedia</xs:documentation>
+                <xs:documentation xml:lang="ja">JVN iPedia における製品開発ベンダの識別番号</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Product">
+        <xs:sequence>
+            <xs:element name="OvalList" type="mjres:OvalList" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="pname" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Product Title</xs:documentation>
+                <xs:documentation xml:lang="ja">製品名</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="cpe" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Product CPE Name</xs:documentation>
+                <xs:documentation xml:lang="ja">製品 CPE 名</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="pid" type="xs:integer" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Product unique number in JVN iPedia</xs:documentation>
+                <xs:documentation xml:lang="ja">JVN iPedia における製品の識別番号</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="update" type="xs:dateTime" use="optional">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Last update of product registration</xs:documentation>
+                <xs:documentation xml:lang="ja">製品登録更新日</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="SecurityCheckInfo">
+        <xs:sequence>
+            <xs:element name="Group" type="mjres:Group" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="Group">
+        <xs:sequence>
+            <xs:element name="Rule" type="mjres:Rule" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Group unique identifier</xs:documentation>
+                <xs:documentation xml:lang="ja">グループ識別子</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="title" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Group title</xs:documentation>
+                <xs:documentation xml:lang="ja">グループタイトル</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Rule">
+        <xs:sequence>
+            <xs:element name="OvalList" type="mjres:OvalList" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Rule unique identifier</xs:documentation>
+                <xs:documentation xml:lang="ja">ルール識別子</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="title" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Rule title</xs:documentation>
+                <xs:documentation xml:lang="ja">ルールタイトル</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="reference" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">Rule reference information</xs:documentation>
+                <xs:documentation xml:lang="ja">ルール参照情報</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="OvalList">
+        <xs:sequence>
+            <xs:element name="OvalListItem" type="mjres:OvalListItem" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OvalListItem">
+        <xs:attribute name="oid" type="mjres:ovalnamePattern" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">OVAL definition name of Product</xs:documentation>
+                <xs:documentation xml:lang="ja">製品の OVAL 定義名</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="XccdfList">
+        <xs:sequence>
+            <xs:element name="XccdfListItem" type="mjres:XccdfListItem" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute ref="xml:lang" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="XccdfListItem">
+        <xs:attribute name="id" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">XCCDF definition name</xs:documentation>
+                <xs:documentation xml:lang="ja">XCCDF 定義名</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="title" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">XCCDF title</xs:documentation>
+                <xs:documentation xml:lang="ja">XCCDF タイトル</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="description" type="xs:string" use="required">
+            <xs:annotation>
+                <xs:documentation xml:lang="en-US">XCCDF description</xs:documentation>
+                <xs:documentation xml:lang="ja">XCCDF 説明</xs:documentation>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <!-- ================================================== -->
+    <!-- =====  Simple Type Definitions  -->
+    <!-- ================================================== -->
+    <xs:simpleType name="cpenamePattern">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">Define the format for acceptable CPE Names.</xs:documentation>
+            <xs:documentation xml:lang="ja">CPE 名のフォーマット</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:anyURI">
+            <xs:pattern value="[c][pP][eE]:/[AHOaho*]?(:[A-Za-z0-9\._\-~%]*){0,6}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ovalnamePattern">
+        <xs:annotation>
+            <xs:documentation xml:lang="en-US">Define the format for acceptable OVAL definition name.</xs:documentation>
+            <xs:documentation xml:lang="ja">OVAL 定義名のフォーマット</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[o][vV][aA][lL](:[A-Za-z0-9\._\-~%]*)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- ================================================== -->
+    <!-- =====  Change History  -->
+    <!-- ================================================== -->
+    <!--
+    v1.0 2008-11-11
+         Initial version for MyJVN
+         http://jvnrss.ise.chuo-u.ac.jp/jtg/apis/productlist_1.0.xsd
+    v2.0 2009-01-05
+         2nd version of MyJVN
+         http://jvndb.jvn.jp/schema/productlist_2.0.xsd
+    v3.0 2009-09-30
+         3rd version of MyJVN
+         http://jvndb.jvn.jp/schema/results_3.0.xsd
+    v3.1 2011-08-17
+         3.1 version for MyJVN API V3
+         http://jvndb.jvn.jp/schema/results_3.1.xsd
+    -->
+
+</xs:schema>

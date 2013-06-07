@@ -1,0 +1,38 @@
+<malwareMetaData xmlns="http://xml/metadataSharing.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xml/metadataSharing.xsd file:metadataSharing.xsd" version="1.200000" id="10000">
+    <company>N/A</company>
+    <author>MMDEF Generation Script</author>
+    <comment>Test MMDEF v1.2 file generated using genMMDEF</comment>
+    <timestamp>2013-03-23T15:12:50.726000</timestamp>
+    <objects>
+        <file id="6ce6f415d8475545be5ba114f208b0ff">
+            <md5>6ce6f415d8475545be5ba114f208b0ff</md5>
+            <sha1>da39a3ee5e6b4b0d3255bfef95601890afd80709</sha1>
+            <sha256>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</sha256>
+            <sha512>cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e</sha512>
+            <size>184</size>
+            <filename>eicar_com.zip</filename>
+            <MIMEType>application/zip</MIMEType>
+        </file>
+        <file id="44d88612fea8a8f36de82e1278abb02f">
+            <md5>44d88612fea8a8f36de82e1278abb02f</md5>
+            <sha1>3395856ce81f2b7382dee72602f798b642f14140</sha1>
+            <sha256>275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f</sha256>
+            <sha512>cc805d5fab1fd71a4ab352a9c533e65fb2d5b885518f4e565e68847223b8e6b85cb48f3afad842726d99239c9e36505c64b0dc9a061d9e507d833277ada336ab</sha512>
+            <size>68</size>
+            <crc32>1750191932</crc32>
+            <filename>eicar.com</filename>
+            <filenameWithinInstaller>eicar.com</filenameWithinInstaller>
+        </file>
+    </objects>
+    <relationships>
+        <relationship type="createdBy" id="1">
+            <source>
+                <ref>file[@id="6ce6f415d8475545be5ba114f208b0ff"]</ref>
+            </source>
+            <target>
+                <ref>file[@id="44d88612fea8a8f36de82e1278abb02f"]</ref>
+            </target>
+            <timestamp>2013-03-23T15:12:50.744000</timestamp>
+        </relationship>
+    </relationships>
+</malwareMetaData>

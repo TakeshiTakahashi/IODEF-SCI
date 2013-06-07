@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ocil xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mitre.org/ocil/1.0 ocil.xsd"
+    xmlns="http://www.mitre.org/ocil/1.0">
+    <generator>
+        <schema_version>1.0</schema_version>
+        <timestamp>2008-05-19T00:00:00</timestamp>
+    </generator>
+    <!-- ==================================================================================================== -->
+    <!-- ========================================  QUESTIONNAIRES  ========================================== -->
+    <!-- ==================================================================================================== -->
+    <questionnaire id="ocil:mitre.org:questionnaire:1" priority="LOW">
+        <title>Physical security Requirements</title>
+ 		<XXX>xxxxxxxx</XXX>
+       <description>Inadequate physical protection can undermine all other security precautions
+            utilized to protect the system. This can jeopardize the confidentiality, availability,
+            and integrity of the system. Physical security of the AIS is the first line protection
+            of any system. Note: Critical servers should be located in rooms, or locked cabinets,
+            that are accessible only to authorized systems personnel. User workstations containing
+            sensitive data should be in access controlled areas.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:11</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:2" priority="LOW">
+        <title>Users with Administrative Privileges</title>
+        <description>Using a privileged account to perform routine functions makes the computer
+            vulnerable to attack by any virus or Trojan Horse inadvertently introduced during a
+            session that has been granted full privileges. The rule of least privilege should always
+            be enforced.</description>
+        <actions priority="LOW" operation="AND">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:21</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:22</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:23</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:24</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:25</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:3" priority="LOW">
+        <title>Backup Administrator Account</title>
+        <description>Backup Operators are able to read and write to any file in the system,
+            regardless of the rights assigned to it. Backup and restore rights permit users to
+            cirvumvent the file access restrictions present on NTFS disk drives for the purpose of
+            backup and restore. Members of the Backup Operators group should have special logon
+            accounts for performing their backup duties.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:31</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:32</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:33</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:4" priority="LOW">
+        <title>Administrator Account Password Changes</title>
+        <description>Default and backup administrator passwords are not changed as required.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:41</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:5" priority="LOW">
+        <title>Users with Backup Operator Privileges</title>
+        <description>Backup Operators are able to read and write to any file in the system,
+            regardless of the rights assigned to it. Backup and restore rights permit users to
+            cirvumvent the file access restrictions present on NTFS disk drives for the purpose of
+            backup and restore. Members of the Backup Operators group should have special logon
+            accounts for performing their backup duties.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:51</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:52</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:53</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:54</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:6" priority="LOW">
+        <title>Shared Accounts</title>
+        <description>This check verifies that all shared accounts on the system are documented and
+            justified. Any shared account must be documented with the IAO as shared accounts do not
+            provide individual accountability for system access and resource usage. Documentation
+            should include the reason for the account, who has access to this account, and how the
+            risk of using a shared account, which provides no individual identification and
+            accountability is mitigated.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:61</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:7" priority="LOW">
+        <title>Access to Windows Event Logs</title>
+        <description>The Security Event Log contains information on security exceptions that occur
+            on the system. This data is critical for identifying security vulnerabilities and
+            intrusions. The Application and System logs can also contain information that is
+            critical in assessing security events. Therefore, these logs must be protected from
+            unauthorized access and modification. Only individuals who have auditing
+            responsibilities (IAO, IAM, auditors, etc.) should be members of this group. The
+            individual System Administrators responsible for maintaining this system can also be
+            members of this group. Note: The administrator, who is responsible for an individual
+            system, should be added to the local auditors group, since he needs the audit user right
+            to perform his tasks.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:71</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:8" priority="LOW">
+        <title>Reviewing Audit Logs</title>
+        <description>To be of value, audit logs will be reviewed on a regular basis to identify
+            security breaches and potential weaknesses in the security structure.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:81</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:9" priority="LOW">
+        <title>Archiving Audit Logs</title>
+        <description>To be of value, audit logs will be archived on a regular basis to ensure data
+            is not being lost. (and also save space)</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:91</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:10" priority="LOW">
+        <title>System Recovery Backups</title>
+        <description>Recovery of a damaged or compromised system will be difficult without an
+            up-to-date Emergency Repair Disk (ERD). An ERD also allows recovery of a damaged or
+            corrupted system that cannot be rebooted. The ERD, when used in the recovery process,
+            can restore the local systems user database to the version that existed when the ERD was
+            previously made. In particular, if the ERD contained an administrator account without a
+            password, then that exposed account may be attacked. As a valuable system resource, the
+            ERD should be protected and stored in a physically secure location.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:101</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:102</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:103</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:11" priority="LOW">
+        <title>Security Configuration Tools</title>
+        <description>The Microsoft Security Configuration Toolset that is integrated in Windows 2000
+            should be used to configure platforms for security compliance. The SCM allows system
+            administrators to consolidate all security related system settings into a single
+            configuration file. These settings can then be applied consistently to any number of
+            Windows Machines. The SCM can use the same configuration file to check platforms for
+            compliance with security policy. If an alternate method is used to configure a system
+            (e.g. manually), that achieves the same configured result, then this is acceptable.
+            Note: The DISA FSO Gold Disk for Windows 2000 can be used to configure a system to meet
+            security requirements.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:111</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:12" priority="LOW">
+        <title>System Configuration Changes (Servers)</title>
+        <description>System files should be checked for unauthorized changes.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:121</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:13" priority="LOW">
+        <title>Unencrypted Remote Access</title>
+        <description>Encryption of Userid and Password information is required. Encryption of the
+            user data inside the network firewall is also highly recommended. Encryption of user
+            data coming from or going outside the network firewall is required. Encryption for
+            Administrator data is always required. Refer to the Enclave Security STIG section on
+            “FTP and Telnet” for detailed information on their use.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:131</test_action_ref>
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:132</test_action_ref>
+        </actions>
+    </questionnaire>
+    <questionnaire id="ocil:mitre.org:questionnaire:14" priority="LOW">
+        <title>Intrusion Detection (Servers)</title>
+        <description>Each Server should have a host-based Intrusion Detection System.</description>
+        <actions priority="LOW">
+            <test_action_ref priority="LOW">ocil:mitre.org:testaction:141</test_action_ref>
+        </actions>
+    </questionnaire>
+    <!-- ==================================================================================================== -->
+    <!-- =========================================  TEST ACTIONS  =========================================== -->
+    <!-- ==================================================================================================== -->
+    <boolean_question_test_action id="ocil:mitre.org:testaction:11" question_ref="ocil:mitre.org:question:11">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:21" question_ref="ocil:mitre.org:question:21">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:22" question_ref="ocil:mitre.org:question:22">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:23" question_ref="ocil:mitre.org:question:23">
+        <when_true>
+            <result>FAIL</result>
+        </when_true>
+        <when_false>
+            <result>PASS</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:24" question_ref="ocil:mitre.org:question:24">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:25" question_ref="ocil:mitre.org:question:25">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:31" question_ref="ocil:mitre.org:question:31">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:32" question_ref="ocil:mitre.org:question:32">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:33" question_ref="ocil:mitre.org:question:33">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:41" question_ref="ocil:mitre.org:question:41">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:51" question_ref="ocil:mitre.org:question:51">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:52" question_ref="ocil:mitre.org:question:52">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:53" question_ref="ocil:mitre.org:question:53">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:54" question_ref="ocil:mitre.org:question:54">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:61" question_ref="ocil:mitre.org:question:61">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:71" question_ref="ocil:mitre.org:question:71">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:81" question_ref="ocil:mitre.org:question:81">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:91" question_ref="ocil:mitre.org:question:91">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:101" question_ref="ocil:mitre.org:question:101">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:102" question_ref="ocil:mitre.org:question:102">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:103" question_ref="ocil:mitre.org:question:103">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:111" question_ref="ocil:mitre.org:question:111">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:121" question_ref="ocil:mitre.org:question:121">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:131" question_ref="ocil:mitre.org:question:131">
+        <when_true>
+            <result>FAIL</result>
+        </when_true>
+        <when_false>
+            <result>PASS</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:132" question_ref="ocil:mitre.org:question:132">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <boolean_question_test_action id="ocil:mitre.org:testaction:141" question_ref="ocil:mitre.org:question:141">
+        <when_true>
+            <result>PASS</result>
+        </when_true>
+        <when_false>
+            <result>FAIL</result>
+        </when_false>
+    </boolean_question_test_action>
+    <!-- ==================================================================================================== -->
+    <!-- ==================================================================================================== -->
+    <!-- ==================================================================================================== -->
+    <!-- ==================================================================================================== -->
+    <!-- ===========================================  QUESTIONS  ============================================ -->
+    <!-- ==================================================================================================== -->
+    <boolean_question id="ocil:mitre.org:question:11" model="MODEL_YES_NO">
+        <question_text>Has equipment been relocated to a controlled access area?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:21" model="MODEL_YES_NO">
+        <question_text>Does each System Administrator have a unique userid dedicated for
+            administering the system?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:22" model="MODEL_YES_NO">
+        <question_text>Does each System Administrator have a separate account for normal user
+            tasks?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:23" model="MODEL_YES_NO">
+        <question_text>Is the built-in Administrator account used to administer the
+            system?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:24" model="MODEL_YES_NO">
+        <question_text>Have System Administrators been properly trained?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:25" model="MODEL_YES_NO">
+        <question_text>Does the IAO maintain a list of users belonging to the Administrators
+            group?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:31" model="MODEL_YES_NO">
+        <question_text>Does each Backup Administrator have a unique userid dedicated for backup
+            duites?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:32" model="MODEL_YES_NO">
+        <question_text>Does each Backup Administrator have a separate account for normal user
+            tasks?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:33" model="MODEL_YES_NO">
+        <question_text>Has the IAO stored details about the backup administrator account in a secure
+            location?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:41" model="MODEL_YES_NO">
+        <question_text>Is a policy in place for changing the default and backup administrator
+            account passwords at least on an annual basis, and when any member of the administrative
+            team leaves the organization?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:51" model="MODEL_YES_NO">
+        <question_text>Does each Backup Operator have a unique userid dedicated for backing up the
+            system?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:52" model="MODEL_YES_NO">
+        <question_text>Does each Backup Operator have a separate account for normal user
+            tasks?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:53" model="MODEL_YES_NO">
+        <question_text>Have Backup Operators been properly trained?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:54" model="MODEL_YES_NO">
+        <question_text>Does the IAO maintain a list of users belonging to the Backup Operators
+            group?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:61" model="MODEL_YES_NO">
+        <question_text>Has the IAO documented and justified all shared accounts on the
+            system?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:71" model="MODEL_YES_NO">
+        <question_text>Has the site has created an Auditors group to restrict access to the Event
+            Logs?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:81" model="MODEL_YES_NO">
+        <question_text>Does the site have a policy in place that defines procedures for reviewing
+            audit logs?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:91" model="MODEL_YES_NO">
+        <question_text>Does the site have a policy in place that defines procedures for archiving
+            audit logs?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:101" model="MODEL_YES_NO">
+        <question_text>Does the site maintain emergency system recovery data?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:102" model="MODEL_YES_NO">
+        <question_text>Is the emergency system recovery data protected from destruction and stored
+            in locked storage container?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:103" model="MODEL_YES_NO">
+        <question_text>Has the emergency system recovery data been updated following the last system
+            modification?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:111" model="MODEL_YES_NO">
+        <question_text>Is the Security Configuration Toolset (or an acceptable alternative) used to
+            configure the Windows systems to meet security requirements?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:121" model="MODEL_YES_NO">
+        <question_text>Does the site use a tool to compare system files (*.exe, *.bat, *.com, *.cmd
+            and *.dll) on servers against a baseline on a weekly basis?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:131" model="MODEL_YES_NO">
+        <question_text>Does the User account used for unencrypted remote access within the Enclave
+            (premise router) have administrator privileges?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:132" model="MODEL_YES_NO">
+        <question_text>Is User ID and Password information used for remote access to system services
+            from outside the Enclave encrypted?</question_text>
+    </boolean_question>
+    <boolean_question id="ocil:mitre.org:question:141" model="MODEL_YES_NO">
+        <question_text>Does each Server have a host-based intrusion detection (HID) system installed
+            and enabled?</question_text>
+    </boolean_question>
+</ocil>
