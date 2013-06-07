@@ -1,0 +1,6 @@
+name=XCCDF
+pattern=cdf:Benchmark
+#no itemTag --- item tag is root tag.
+idAttr=id
+offset=0
+prefix=

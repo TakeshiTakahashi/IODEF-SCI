@@ -1,0 +1,6 @@
+﻿name=CAPEC
+pattern=Attack_Pattern_Catalog
+itemTag=Attack_Patterns/Attack_Pattern,Views/View,Categories/Category,Environments/Environment
+idAttr=ID
+offset=0
+prefix=ATTACK,VIEW,CAT,E-

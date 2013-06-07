@@ -1,0 +1,7 @@
+name=JVNiPedia
+displayName=JVN iPedia
+itemTag=item
+idAttr=<dc:identifier>
+offset=0
+prefix=
+remove=channel

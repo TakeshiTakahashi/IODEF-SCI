@@ -1,0 +1,6 @@
+name=CWE
+pattern=Weakness_Catalog
+itemTag=Views/View,Categories/Category,Weaknesses/Weakness,Compound_Elements/Compound_Element
+idAttr=ID
+offset=0
+prefix=

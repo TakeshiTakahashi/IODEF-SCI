@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema targetNamespace="urn:ietf:params:xml:ns:iodef-sci-1.0"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:iodef="urn:ietf:params:xml:ns:iodef-1.0"
+ xmlns:iodef-sci="urn:ietf:params:xml:ns:iodef-sci-1.0"
+ elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+<xsd:import namespace="urn:ietf:params:xml:ns:iodef-1.0" schemaLocation="iodef_schema.xsd"/>
+
+
+<!--
+<xsd:import namespace="http://xml/metadataSharing.xsd" schemaLocation="metadataSharing.xsd"/>
+
+<xsd:import namespace="http://cve.mitre.org/cve/downloads/1.0" schemaLocation="cve_1.0.xsd"/>
+
+<xsd:import namespace="http://cce.mitre.org" schemaLocation="cce.xsd"/>
+
+<xsd:import namespace="http://maec.mitre.org/XMLSchema/maec-core-2" schemaLocation="MAEC_v1.1.xsd"/>
+
+<xsd:import namespace="http://cee.mitre.org" schemaLocation="cee.xsd"/>
+
+<xsd:import namespace="http://cpe.mitre.org/naming/2.0" schemaLocation="cpe-naming_2.3.xml"/>
+<xsd:import namespace="http://cpe.mitre.org/dictionary/2.0" schemaLocation="cpe-dictionary_2.3.xml"/>
+-->
+
+<!--
+ schemaLocation="urn:ietf:params:xml:schema:iodef-1.0"/>
+-->
+
+<!--================================================================
+== XMLDATA                                                        ==
+==================================================================-->
+
+<xsd:complexType name="XMLDATA">
+  <xsd:complexContent>
+    <xsd:restriction base="iodef:ExtensionType">
+      <xsd:sequence>
+        <xsd:any namespace="##any" processContents="lax" minOccurs="0"
+         maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="dtype" type="iodef:dtype-type" use="required" fixed="xml"/>
+      <xsd:attribute name="ext-dtype" type="xsd:string" use="optional"/>
+      <xsd:attribute name="meaning" type="xsd:string"/>
+      <xsd:attribute name="formatid" type="xsd:string"/>
+      <xsd:attribute name="restriction" type="iodef:restriction-type"/>
+    </xsd:restriction>
+  </xsd:complexContent>
+</xsd:complexType>
+
+
+<!--================================================================
+== Scoring Class                                                  ==
+==================================================================-->
+
+  <xsd:element name="Scoring">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="ScoreSet" type="iodef-sci:XMLDATA"
+         minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--================================================================
+== AttackPattern Class                                            ==
+==================================================================-->
+
+  <xsd:element name="AttackPattern">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference" minOccurs="0"
+           maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:element ref="iodef-sci:Platform" minOccurs="0"
+         maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="AttackPatternID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--================================================================
+== Vulnerability Class                                            ==
+==================================================================-->
+
+  <xsd:element name="Vulnerability">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference" minOccurs="0"
+           maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:element ref="iodef-sci:Platform" minOccurs="0"
+         maxOccurs="unbounded"/>
+        <xsd:element ref="iodef-sci:Scoring" minOccurs="0"
+         maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="VulnerabilityID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--=================================================================
+== Weakness Class                                                  ==
+==================================================================-->
+
+  <xsd:element name="Weakness">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference" minOccurs="0"
+           maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:element ref="iodef-sci:Platform" minOccurs="0"
+         maxOccurs="unbounded"/>
+        <xsd:element ref="iodef-sci:Scoring" minOccurs="0"
+         maxOccurs="unbounded"/>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="WeaknessID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--=================================================================
+== Platform Class                                                ==
+==================================================================-->
+
+  <xsd:element name="Platform">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference" minOccurs="0"
+           maxOccurs="unbounded"/>
+        </xsd:choice>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="PlatformID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--================================================================
+== EventReport Class                                              ==
+=================================================================-->
+
+  <xsd:element name="EventReport">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference"
+           minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="EventID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--================================================================
+== Verification Class                                             ==
+=================================================================-->
+
+  <xsd:element name="Verification">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference"
+           minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="VerificationID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+<!--================================================================
+== Remediation Class                                              ==
+=================================================================-->
+
+  <xsd:element name="Remediation">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:choice>
+          <xsd:element name="RawData" type="iodef-sci:XMLDATA"
+           minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element ref="iodef:Reference"
+           minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+      </xsd:sequence>
+      <xsd:attribute name="SpecID" type="xsd:string" use="required"/>
+      <xsd:attribute name="ext-SpecID" type="xsd:string"
+       use="optional"/>
+      <xsd:attribute name="RemediationID" type="xsd:string"
+       use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+
+</xsd:schema>

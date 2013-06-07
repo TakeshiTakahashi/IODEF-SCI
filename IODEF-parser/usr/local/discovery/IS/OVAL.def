@@ -1,0 +1,6 @@
+name=OVAL
+itemTag=definitions/definition,states/.*_state,objects/.*_object,tests/.*_test,variables/.*_variable
+pattern=oval_definitions
+idAttr=id
+offset=0
+prefix=

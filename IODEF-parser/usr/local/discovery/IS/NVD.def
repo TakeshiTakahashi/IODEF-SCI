@@ -1,0 +1,9 @@
+name=NVD
+displayName=NVD-CVE
+pattern=nvd
+itemTag=entry
+idAttr=id
+offset=0
+prefix=
+lastModifiedField=<vuln:last-modified-datetime>
+#externalURL=http://static.nvd.nist.gov/feeds/xml/cve/nvdcve-2.0-recent.xml

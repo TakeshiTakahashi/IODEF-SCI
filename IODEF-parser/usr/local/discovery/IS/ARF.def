@@ -1,0 +1,7 @@
+name=ARF
+pattern=asset-report-collection
+itemTag=report-requests/report-request,assets/asset,reports/report
+idAttr=id
+offset=0
+prefix=
+displayXSL=ARF.xsl
