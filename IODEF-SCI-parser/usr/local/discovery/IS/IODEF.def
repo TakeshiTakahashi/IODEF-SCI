@@ -1,7 +1,0 @@
-name=IODEF
-pattern=IODEF-Document
-itemTag=Incident
-idAttr=<IncidentID name=
-displayName=IODEF-SCI
-offset=0
-prefix=

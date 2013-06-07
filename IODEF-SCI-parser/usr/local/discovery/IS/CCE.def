@@ -1,6 +1,0 @@
-name=CCE
-pattern=cce_list,cce
-itemTag=cces/cce
-idAttr=cce_id
-offset=0
-prefix=

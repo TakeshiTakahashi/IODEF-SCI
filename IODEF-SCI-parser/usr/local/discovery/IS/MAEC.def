@@ -1,7 +1,0 @@
-﻿name=MAEC
-pattern=maec:MAEC_Bundle
-itemTag=maec:Analyses/maec:Analysis,maec:Actions/maec:Action id=,maec:Behaviors/maec:Behavior,maec:Objects/maec:Object
-idAttr=id
-offset=0
-prefix=
-remove=

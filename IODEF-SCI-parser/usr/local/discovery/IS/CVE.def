@@ -1,6 +1,0 @@
-name=CVE
-pattern=cve
-itemTag=item
-idAttr=name
-offset=0
-prefix=

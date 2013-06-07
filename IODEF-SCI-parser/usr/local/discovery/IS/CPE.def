@@ -1,6 +1,0 @@
-name=CPE
-pattern=cpe-list
-itemTag=cpe-item
-idAttr=name
-offset=0
-prefix=

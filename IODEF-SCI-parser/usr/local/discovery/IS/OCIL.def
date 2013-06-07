@@ -1,6 +1,0 @@
-name=OCIL
-pattern=ocil
-itemTag=/questionnaire,/boolean_question_test_action,/boolean_question
-idAttr=id
-offset=0
-prefix=
